@@ -11,7 +11,7 @@ import SwiftUI
 struct octetApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameView()
         }
     }
 }
