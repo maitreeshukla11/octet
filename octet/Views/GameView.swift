@@ -11,7 +11,7 @@ struct GameView: View {
     var player2Cards: [[(cardValue: String, isFaceUp: Bool)]]
     var player1Cards: [[(cardValue: String, isFaceUp: Bool)]]
     var cardToBePlacedValue: String?
-    var drawPile: [String]
+    var deck: [String]
     var discard: [String]
     var playerTurn: Int
     
@@ -23,7 +23,7 @@ struct GameView: View {
                     PlayerView(playerId: Constants.player2Id, cards: player2Cards, cardWidth: cardWidth)
                     CenterSetUpView(
                         cardToBePlacedValue: cardToBePlacedValue,
-                        drawPile: drawPile,
+                        deck: deck,
                         discard: discard,
                         playerTurn: playerTurn,
                         cardWidth: cardWidth
@@ -89,8 +89,8 @@ struct GameView: View {
     ]
     
     var cardToBePlacedValue: String?
-    var drawPile: [String] = ["3", "5", "7"]
+    var deck: [String] = ["3", "5", "7"]
     var discard: [String] = ["6", "5", "2"]
     var playerTurn: Int = 1  // 1 or 2
-    GameView(player2Cards: player2Cards, player1Cards: player1Cards, cardToBePlacedValue: cardToBePlacedValue, drawPile: drawPile, discard: discard, playerTurn: playerTurn)
+    GameView(player2Cards: player2Cards, player1Cards: player1Cards, cardToBePlacedValue: cardToBePlacedValue, deck: deck, discard: discard, playerTurn: playerTurn)
 }

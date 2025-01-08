@@ -11,4 +11,16 @@ struct GameState {
     var activePlayerId: Int
     var cardToBePlaced: Card
     var discardPileTopCard: Card
+    var player1: Player
+    var player2: Player
+    var deck: Deck
+    var gameOver: Bool
+    
+    mutating func handlePlayerTurnEnd() {
+        
+    }
+    
+    func handleGameOver () {
+        
+    }
 }

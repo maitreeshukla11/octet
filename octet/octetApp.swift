@@ -48,12 +48,12 @@ struct octetApp: App {
     ]
     
     var cardToBePlacedValue: String?
-    var drawPile: [String] = ["3♦", "5♦", "7♠"]
+    var deck: [String] = ["3♦", "5♦", "7♠"]
     var discard: [String] = ["9♦", "J♥", "Q♠"]
     var playerTurn: Int = 1  // 1 or 2
     var body: some Scene {
         WindowGroup {
-            GameView(player2Cards: player2Cards, player1Cards: player1Cards, cardToBePlacedValue: cardToBePlacedValue, drawPile: drawPile, discard: discard, playerTurn: playerTurn)
+            GameView(player2Cards: player2Cards, player1Cards: player1Cards, cardToBePlacedValue: cardToBePlacedValue, deck: deck, discard: discard, playerTurn: playerTurn)
         }
     }
 }

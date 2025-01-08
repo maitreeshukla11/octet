@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CenterSetUpView: View {
     var cardToBePlacedValue: String?
-    var drawPile: [String]
+    var deck: [String]
     var discard: [String]
     var playerTurn: Int
     
@@ -17,7 +17,7 @@ struct CenterSetUpView: View {
     
     var body: some View {
         let discardTop = discard.last
-        let drawPileTop = drawPile.last
+        let deckTop = deck.last
 
         VStack(spacing: Constants.triangleSpacing) {
             Triangle()
@@ -31,8 +31,8 @@ struct CenterSetUpView: View {
                         NoCardView(noCardText: "Card to Play")
                     }
                     
-                    if drawPileTop != nil {
-                        CardView(isFaceUp: false, cardValue: drawPileTop!)
+                    if deckTop != nil {
+                        CardView(isFaceUp: false, cardValue: deckTop!)
                     } else {
                         NoCardView(noCardText: "Draw Pile")
                     }
@@ -73,9 +73,9 @@ struct CenterSetUpView: View {
 
 #Preview {
     var cardToBePlacedValue: String?
-    var drawPile: [String] = ["1", "2", "3"]
+    var deck: [String] = ["1", "2", "3"]
     var discard: [String] = ["1", "2", "3"]
     var playerTurn: Int = 1
     var cardWidth: CGFloat = 90
-    CenterSetUpView(cardToBePlacedValue: cardToBePlacedValue, drawPile: drawPile, discard: discard, playerTurn: playerTurn, cardWidth: cardWidth)
+    CenterSetUpView(cardToBePlacedValue: cardToBePlacedValue, deck: deck, discard: discard, playerTurn: playerTurn, cardWidth: cardWidth)
 }
