@@ -8,8 +8,12 @@
 import Foundation
 
 struct Card {
-    var isFaceUp: Bool
-    var cardValue: String
+    private(set) var isFaceUp: Bool
+    private(set) var cardValue: String
+    
+    mutating func flip() {
+        self.isFaceUp = true
+    }
 }
 
 

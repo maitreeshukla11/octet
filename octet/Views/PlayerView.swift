@@ -23,6 +23,9 @@ struct PlayerView: View {
                             isFaceUp: cardData.isFaceUp,
                             cardValue: cardData.cardValue
                         )
+                        //.onTapGesture {
+                          //  tapPlayerCard(columnIndex, rowIndex, playerId)
+                       // }
                         .frame(width: cardWidth)
                     }
                 }

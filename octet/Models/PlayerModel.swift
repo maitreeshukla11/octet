@@ -8,8 +8,8 @@
 import Foundation
 
 struct Player {
-    var playerId: Int
-    var cards: [[Card]]
+    private(set) var playerId: Int
+    private(set) var cards: [[Card]]
     //var score: Int
     //var allCardsFaceUp: Bool
     
@@ -23,6 +23,10 @@ struct Player {
             let subset = Array(cards[startIndex..<endIndex])
             self.cards.append(subset)
         }
+    }
+    
+    mutating func flipCard(column: Int, row: Int) {
+        self.cards[column][row].flip()
     }
     
     func computeScore() -> Int {

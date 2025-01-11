@@ -8,7 +8,7 @@
 import Foundation
 
 struct Deck {
-    var deck: [Card]
+    private(set) var deck: [Card]
     
     init() {
         self.deck = []
@@ -20,6 +20,7 @@ struct Deck {
         }
         for _ in 1...4 {
             let card = Card(isFaceUp: false, cardValue: "🐙")
+            deck.append(card)
         }
         deck.shuffle()
     }
