@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct CardView: View {
-    var isFaceUp: Bool
-    var cardValue: String
+    var card: Card
     
     var body: some View {
         ZStack(alignment: .center) {
             RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .fill(isFaceUp ? Color.white : Constants.skyBlueColor)
+                .fill(card.isFaceUp ? Color.white : Constants.skyBlueColor)
                 .strokeBorder(lineWidth: Constants.lineWidth)
                 .shadow(radius: Constants.shadowRadius)
             
-            if isFaceUp {
-                Text(cardValue)
+            if card.isFaceUp {
+                Text(card.cardValue)
                     .font(.system(size: Constants.FontSize.largest))
                     .minimumScaleFactor(Constants.FontSize.scaleFactor)
                     .multilineTextAlignment(.center)
@@ -53,7 +52,8 @@ struct CardView: View {
 #Preview {
     var isFaceUp: Bool = true
     var cardValue: String = "10"
-    CardView(isFaceUp: isFaceUp, cardValue: cardValue)
+    var card = Card(isFaceUp: isFaceUp, cardValue: cardValue)
+    CardView(card: card)
         .frame(width: 100)
 }
 

@@ -8,46 +8,43 @@
 import SwiftUI
 
 struct CenterSetUpView: View {
-    var cardToBePlacedValue: String?
-    var deck: [String]
-    var discard: [String]
-    var playerTurn: Int
+    var cardToBePlaced: Card?
+    var deckHasCards: Bool
+    var discard: Card?
+    var activePlayer: Int
     
     var cardWidth: CGFloat
     
     var body: some View {
-        let discardTop = discard.last
-        let deckTop = deck.last
-
         VStack(spacing: Constants.triangleSpacing) {
             Triangle()
-                .fill(playerTurn == 2 ? Color.green : Color.gray)
+                .fill(activePlayer == 2 ? Color.green : Color.gray)
                 .frame(width: Constants.triangleDimension, height: Constants.triangleDimension)
             HStack(spacing: Constants.cardSpacing) {
                 Group {
-                    if cardToBePlacedValue != nil {
-                        CardView(isFaceUp: true, cardValue: cardToBePlacedValue!)
+                    if cardToBePlaced != nil {
+                        CardView(card: cardToBePlaced!)
                     } else {
                         NoCardView(noCardText: "Card to Play")
                     }
                     
-                    if deckTop != nil {
-                        CardView(isFaceUp: false, cardValue: deckTop!)
+                    if deckHasCards {
+                        CardView(card: Card(isFaceUp: false, cardValue: "Doesn't Matter"))
                     } else {
                         NoCardView(noCardText: "Draw Pile")
                     }
                     
-                    if discardTop != nil {
-                        CardView(isFaceUp: true, cardValue: discardTop!)
+                    if discard != nil {
+                        CardView(card: discard!)
                     } else {
                         NoCardView(noCardText: "Discard Pile")
                     }
                 }
-                .rotationEffect(.degrees(playerTurn == 1 ? 0 : 180))
+                .rotationEffect(.degrees(activePlayer == 1 ? 0 : 180))
                 .frame(width: cardWidth)
             }
             Triangle()
-                .fill(playerTurn == 1 ? Color.green : Color.gray)
+                .fill(activePlayer == 1 ? Color.green : Color.gray)
                 .rotationEffect(.degrees(180))
                 .frame(width: Constants.triangleDimension, height: Constants.triangleDimension)
         }
@@ -72,10 +69,5 @@ struct CenterSetUpView: View {
 }
 
 #Preview {
-    var cardToBePlacedValue: String?
-    var deck: [String] = ["1", "2", "3"]
-    var discard: [String] = ["1", "2", "3"]
-    var playerTurn: Int = 1
-    var cardWidth: CGFloat = 90
-    CenterSetUpView(cardToBePlacedValue: cardToBePlacedValue, deck: deck, discard: discard, playerTurn: playerTurn, cardWidth: cardWidth)
+    CenterSetUpView(deckHasCards: true, activePlayer: 1, cardWidth: 90)
 }

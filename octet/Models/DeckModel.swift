@@ -35,6 +35,10 @@ struct Deck {
         return deck.removeFirst()
     }
     
+    func hasCards() -> Bool {
+        return !self.deck.isEmpty
+    }
+    
 }
 
 
