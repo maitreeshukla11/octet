@@ -13,6 +13,14 @@ import SwiftUI
     func tapPlayerCard(column: Int, row: Int, playerId: Int) {
         self.gameState.tapPlayerCard(column: column, row: row, playerId: playerId)
     }
+    
+    func tapDiscardCard() {
+        self.gameState.tapDiscardCard()
+    }
+    
+    func tapDeck() {
+        self.gameState.tapDeck()
+    }
 }
 
 

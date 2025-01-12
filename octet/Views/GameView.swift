@@ -21,7 +21,8 @@ struct GameView: View {
                         deckHasCards: gameViewModel.gameState.deck.hasCards(),
                         discard: gameViewModel.gameState.discardPileTopCard,
                         activePlayer: gameViewModel.gameState.activePlayerId,
-                        cardWidth: cardWidth
+                        cardWidth: cardWidth,
+                        gameViewModel: $gameViewModel
                     )
                     PlayerView(player: gameViewModel.gameState.player1, cardWidth: cardWidth, gameViewModel: $gameViewModel)
                 }

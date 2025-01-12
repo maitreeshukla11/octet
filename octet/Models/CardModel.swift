@@ -11,7 +11,7 @@ struct Card {
     private(set) var isFaceUp: Bool
     private(set) var cardValue: String
     
-    mutating func flip() {
+    mutating func makeFaceUp() {
         self.isFaceUp = true
     }
 }

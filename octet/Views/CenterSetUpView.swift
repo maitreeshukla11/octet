@@ -11,9 +11,11 @@ struct CenterSetUpView: View {
     var cardToBePlaced: Card?
     var deckHasCards: Bool
     var discard: Card?
-    var activePlayer: Int
+    var activePlayer: Int?
     
     var cardWidth: CGFloat
+    
+    @Binding var gameViewModel: GameViewModel
     
     var body: some View {
         VStack(spacing: Constants.triangleSpacing) {
@@ -30,17 +32,23 @@ struct CenterSetUpView: View {
                     
                     if deckHasCards {
                         CardView(card: Card(isFaceUp: false, cardValue: "Doesn't Matter"))
+                            .onTapGesture {
+                                gameViewModel.tapDeck()
+                            }
                     } else {
                         NoCardView(noCardText: "Draw Pile")
                     }
                     
                     if discard != nil {
                         CardView(card: discard!)
+                            .onTapGesture {
+                                gameViewModel.tapDiscardCard()
+                            }
                     } else {
                         NoCardView(noCardText: "Discard Pile")
                     }
                 }
-                .rotationEffect(.degrees(activePlayer == 1 ? 0 : 180))
+                .rotationEffect(.degrees(activePlayer == 2 ? 180 : 0))
                 .frame(width: cardWidth)
             }
             Triangle()
@@ -69,5 +77,6 @@ struct CenterSetUpView: View {
 }
 
 #Preview {
-    CenterSetUpView(deckHasCards: true, activePlayer: 1, cardWidth: 90)
+    var gameViewModel: GameViewModel = GameViewModel()
+    CenterSetUpView(deckHasCards: true, activePlayer: nil, cardWidth: 90, gameViewModel: .constant(gameViewModel))
 }

@@ -32,7 +32,9 @@ struct Deck {
     }
     
     mutating func drawTopCard() -> Card {
-        return deck.removeFirst()
+        var drawnCard = deck.removeFirst()
+        drawnCard.makeFaceUp()
+        return drawnCard
     }
     
     func hasCards() -> Bool {

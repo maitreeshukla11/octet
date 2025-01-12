@@ -11,7 +11,6 @@ struct Player {
     private(set) var playerId: Int
     private(set) var cards: [[Card]]
     //var score: Int
-    //var allCardsFaceUp: Bool
     
     init(playerId: Int, cards: [Card]) {
         self.playerId = playerId
@@ -25,8 +24,38 @@ struct Player {
         }
     }
     
-    mutating func flipCard(column: Int, row: Int) {
-        self.cards[column][row].flip()
+    mutating func makeFaceUp(column: Int, row: Int) {
+        self.cards[column][row].makeFaceUp()
+    }
+    
+    mutating func replaceCard(cardToBePlaced: Card, column: Int, row: Int) -> Card {
+        var cardToBeReplaced = self.cards[column][row]
+        self.cards[column][row] = cardToBePlaced
+        cardToBeReplaced.makeFaceUp()
+        return cardToBeReplaced
+    }
+    
+    func isCardFaceDown(column: Int, row: Int) -> Bool {
+        return !self.cards[column][row].isFaceUp
+    }
+    
+    func areAllCardsFaceUp() -> Bool {
+        for column in self.cards {
+            for card in column {
+                if !card.isFaceUp {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    mutating func flipAllCardsFaceUp() {
+        for column in self.cards {
+            for var card in column {
+                card.makeFaceUp()
+            }
+        }
     }
     
     func computeScore() -> Int {
