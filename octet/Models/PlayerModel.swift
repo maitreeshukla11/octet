@@ -51,9 +51,9 @@ struct Player {
     }
     
     mutating func flipAllCardsFaceUp() {
-        for column in self.cards {
-            for var card in column {
-                card.makeFaceUp()
+        for column in 0...3 {
+            for row in 0...1 {
+                self.cards[column][row].makeFaceUp()
             }
         }
     }
