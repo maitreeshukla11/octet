@@ -14,6 +14,10 @@ struct Card {
     mutating func makeFaceUp() {
         self.isFaceUp = true
     }
+    
+    func isOctopus() -> Bool {
+        return self.cardValue == "🐙"
+    }
 }
 
 

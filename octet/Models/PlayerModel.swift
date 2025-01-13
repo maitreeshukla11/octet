@@ -31,7 +31,6 @@ struct Player {
     mutating func replaceCard(cardToBePlaced: Card, column: Int, row: Int) -> Card {
         var cardToBeReplaced = self.cards[column][row]
         self.cards[column][row] = cardToBePlaced
-        cardToBeReplaced.makeFaceUp()
         return cardToBeReplaced
     }
     
@@ -60,9 +59,5 @@ struct Player {
     
     func computeScore() -> Int {
         return 0
-    }
-    
-    func checkIfAllCardsAreFaceUp() -> Bool {
-        return false
     }
 }

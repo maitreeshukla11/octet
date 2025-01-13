@@ -35,7 +35,9 @@ struct GameState {
                 }
             } else {
                 replaceCard(column: column, row: row)
-                handlePlayerTurnEnd()
+                if (self.cardToBePlaced == nil) {
+                    handlePlayerTurnEnd()
+                }
             }
         }
     }
@@ -70,14 +72,19 @@ struct GameState {
     }
     
     mutating func replaceCard(column: Int, row: Int) {
+        var cardToBeReplaced: Card
         if self.activePlayerId == 1 {
-            let cardToBeReplaced =  player1.replaceCard(cardToBePlaced: self.cardToBePlaced!, column: column, row: row)
-            self.discardPileTopCard = cardToBeReplaced
+            cardToBeReplaced =  player1.replaceCard(cardToBePlaced: self.cardToBePlaced!, column: column, row: row)
         } else {
-            let cardToBeReplaced = player2.replaceCard(cardToBePlaced: self.cardToBePlaced!, column: column, row: row)
-            self.discardPileTopCard = cardToBeReplaced
+            cardToBeReplaced = player2.replaceCard(cardToBePlaced: self.cardToBePlaced!, column: column, row: row)
         }
-        cardToBePlaced = nil
+        if (cardToBeReplaced.isOctopus() && cardToBeReplaced.isFaceUp) {
+            self.cardToBePlaced = cardToBeReplaced
+        } else {
+            self.discardPileTopCard = cardToBeReplaced
+            self.discardPileTopCard!.makeFaceUp()
+            self.cardToBePlaced = nil
+        }
     }
     
     
