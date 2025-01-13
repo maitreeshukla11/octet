@@ -13,7 +13,7 @@ struct CardView: View {
     var body: some View {
         ZStack(alignment: .center) {
             RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .fill(card.isFaceUp ? Color.white : Constants.skyBlueColor)
+                .fill(card.isFaceUp ? Color.white : Constants.ceruleanColor)
                 .strokeBorder(lineWidth: Constants.lineWidth)
                 .shadow(radius: Constants.shadowRadius)
             
@@ -24,13 +24,14 @@ struct CardView: View {
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(Constants.inset)
+                    .underline(card.cardValue == "6" || card.cardValue == "9")
             }
         }
         .aspectRatio(Constants.aspectRatio, contentMode: .fit)
     }
     
     private struct Constants {
-        static let skyBlueColor = Color(red: 0.53, green: 0.81, blue: 0.92)
+        static let ceruleanColor = Color(red: 0.17, green: 0.67, blue: 0.98)
         static let cornerRadius: CGFloat = 10
         static let lineWidth: CGFloat = 1
         static let shadowRadius: CGFloat = 5
@@ -51,7 +52,7 @@ struct CardView: View {
     
 #Preview {
     var isFaceUp: Bool = true
-    var cardValue: String = "10"
+    var cardValue: String = "6"
     var card = Card(isFaceUp: isFaceUp, cardValue: cardValue)
     CardView(card: card)
         .frame(width: 100)

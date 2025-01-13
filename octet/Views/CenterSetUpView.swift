@@ -26,6 +26,12 @@ struct CenterSetUpView: View {
                 Group {
                     if cardToBePlaced != nil {
                         CardView(card: cardToBePlaced!)
+                            .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.green, lineWidth: 4)
+                                .shadow(color: .green, radius: 5)
+                            )
+                            .frame(width: cardWidth)
                     } else {
                         NoCardView(noCardText: "Card to Play")
                     }
