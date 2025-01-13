@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-    @State var gameViewModel: GameViewModel
+    @Binding var gameViewModel: GameViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -45,5 +45,5 @@ struct GameView: View {
 
 #Preview {
     var gameViewModel: GameViewModel = GameViewModel()
-    GameView(gameViewModel: gameViewModel)
+    GameView(gameViewModel: .constant(gameViewModel))
 }

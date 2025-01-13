@@ -9,10 +9,15 @@ import SwiftUI
 
 @main
 struct octetApp: App {
-    @State var gameViewModel: GameViewModel = GameViewModel()
+    @State var gameViewModel: GameViewModel = GameViewModel() // Initialize GameViewModel
+
     var body: some Scene {
         WindowGroup {
-            GameView(gameViewModel: gameViewModel)
+            NavigationView { // Embed in NavigationView for navigation capabilities
+                HomePageView(gameViewModel: $gameViewModel) // Pass as Binding
+                    .navigationBarHidden(true) // Optionally hide the navigation bar on Home Page
+            }
         }
     }
 }
+

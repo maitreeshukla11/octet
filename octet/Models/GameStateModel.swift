@@ -59,9 +59,15 @@ struct GameState {
     }
     
     mutating func tapDiscardCard() {
-        if self.cardToBePlaced == nil && self.activePlayerId != nil {
-            self.cardToBePlaced = self.discardPileTopCard
-            self.discardPileTopCard = nil
+        if self.activePlayerId != nil {
+            if self.cardToBePlaced == nil {
+                self.cardToBePlaced = self.discardPileTopCard
+                self.discardPileTopCard = nil
+            } else {
+                self.discardPileTopCard = self.cardToBePlaced
+                self.cardToBePlaced = nil
+                handlePlayerTurnEnd()
+            }
         }
     }
     
