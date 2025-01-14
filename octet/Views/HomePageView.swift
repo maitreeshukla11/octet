@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct HomePageView: View {
-    @Binding var gameViewModel: GameViewModel // Receive as Binding
+    @Binding var gameViewModel: GameViewModel
+    @Binding var navigationPath: [OctetScreen]
 
     var body: some View {
-        VStack(spacing: 40) { // Adjust spacing as needed
+        VStack(spacing: 40) {
             Spacer()
-            
+
             Text("🐙ctet")
                 .font(.system(size: 96))
                 .fontWeight(.bold)
-            
+
             Spacer()
-            
-            // Navigation Link to GameView
-            NavigationLink(destination: GameView(gameViewModel: $gameViewModel)) {
+
+            Button(action: {
+                navigationPath.append(.game)
+            }) {
                 Text("Play")
                     .font(.title2)
                     .fontWeight(.semibold)
@@ -32,9 +34,10 @@ struct HomePageView: View {
                     .cornerRadius(12)
                     .padding(.horizontal, 40)
             }
-            
-            // Navigation Link to RuleView
-            NavigationLink(destination: RuleView()) {
+
+            Button(action: {
+                navigationPath.append(.rules)
+            }) {
                 Text("Rules")
                     .font(.title2)
                     .fontWeight(.semibold)
@@ -45,15 +48,30 @@ struct HomePageView: View {
                     .cornerRadius(12)
                     .padding(.horizontal, 40)
             }
-            
+
+            Button(action: {
+                navigationPath.append(.settings)
+            }) {
+                Text("Settings")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.gray)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 40)
+            }
+
             Spacer()
         }
-        .navigationBarHidden(true) // Hide the navigation bar on Home Page
     }
 }
 
+
 #Preview {
     var gameViewModel: GameViewModel = GameViewModel()
-    HomePageView(gameViewModel: .constant(gameViewModel))
+    NavigationStack { // Embed in NavigationStack to simulate navigation
+        HomePageView(gameViewModel: .constant(gameViewModel), navigationPath: .constant([]))
+    }
 }
-

@@ -13,11 +13,7 @@ struct octetApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationView { // Embed in NavigationView for navigation capabilities
-                HomePageView(gameViewModel: $gameViewModel) // Pass as Binding
-                    .navigationBarHidden(true) // Optionally hide the navigation bar on Home Page
-            }
+            OctetNavigationStack(gameViewModel: $gameViewModel) // Single navigation implementation
         }
     }
 }
-

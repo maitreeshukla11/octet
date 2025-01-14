@@ -16,6 +16,7 @@ struct CenterSetUpView: View {
     var cardWidth: CGFloat
     
     @Binding var gameViewModel: GameViewModel
+    @AppStorage("rotatePlayer2") private var rotatePlayer2 = true
     
     var body: some View {
         VStack(spacing: Constants.triangleSpacing) {
@@ -54,7 +55,7 @@ struct CenterSetUpView: View {
                         NoCardView(noCardText: "Discard Pile")
                     }
                 }
-                .rotationEffect(.degrees(activePlayer == 2 ? 180 : 0))
+                .rotationEffect(.degrees(activePlayer == 2 && rotatePlayer2 ? 180 : 0))
                 .frame(width: cardWidth)
             }
             Triangle()

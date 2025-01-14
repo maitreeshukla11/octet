@@ -13,6 +13,7 @@ struct PlayerView: View {
     var cardWidth: CGFloat
     
     @Binding var gameViewModel: GameViewModel
+    @AppStorage("rotatePlayer2") private var rotatePlayer2 = true
     
     var body: some View {
         HStack {
@@ -29,7 +30,7 @@ struct PlayerView: View {
                 }
             }
         }
-        .rotationEffect(.degrees(player.playerId == 1 ? 0 : 180))
+        .rotationEffect(.degrees(player.playerId == 2 && rotatePlayer2 ? 180 : 0))
     }
 }
 
