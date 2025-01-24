@@ -15,6 +15,7 @@ struct GameState {
     private(set) var player2: Player
     private(set) var deck: Deck
     private(set) var gameOver: Bool
+    private(set) var gameStarted: Bool
   
     
     init() {
@@ -24,6 +25,7 @@ struct GameState {
         self.activePlayerId = 1
         self.discardPileTopCard = self.deck.drawTopCard()
         self.gameOver = false
+        self.gameStarted = false
     }
     
     mutating func tapPlayerCard(column: Int, row: Int, playerId: Int) {
@@ -117,4 +119,20 @@ struct GameState {
         self.activePlayerId = nil
         self.gameOver = true
     }
+    
+    mutating func newGame() {
+        self.deck = Deck()
+        self.player1 = Player(playerId: 1, cards: self.deck.dealEightCards())
+        self.player2 = Player(playerId: 2, cards: self.deck.dealEightCards())
+        self.activePlayerId = 1
+        self.discardPileTopCard = self.deck.drawTopCard()
+        self.gameOver = false
+        self.gameStarted = true
+    }
+    
+    mutating func setGameToStarted() {
+        self.gameStarted = true
+    }
 }
+
+

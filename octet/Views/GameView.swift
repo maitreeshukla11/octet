@@ -17,7 +17,12 @@ struct GameView: View {
                 VStack {
                     PlayerView(player: gameViewModel.gameState.player2, cardWidth: cardWidth, gameViewModel: $gameViewModel)
                     if gameViewModel.gameState.gameOver {
-                        ScoreView(player1Score: gameViewModel.gameState.player1.computeScore(), player2Score: gameViewModel.gameState.player2.computeScore())
+                        ScoreView(
+                            player1Score: gameViewModel.gameState.player1.computeScore(),
+                            player2Score: gameViewModel.gameState.player2.computeScore(),
+                            gameViewModel: $gameViewModel
+                        )
+                        .padding(15)
                     } else {
                         CenterSetUpView(
                             cardToBePlaced: gameViewModel.gameState.cardToBePlaced,

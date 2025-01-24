@@ -22,6 +22,7 @@ struct HomePageView: View {
             Spacer()
 
             Button(action: {
+                gameViewModel.setGameToStarted()
                 navigationPath.append(.game)
             }) {
                 Text("Play")
@@ -34,6 +35,24 @@ struct HomePageView: View {
                     .cornerRadius(12)
                     .padding(.horizontal, 40)
             }
+            
+            if gameViewModel.gameState.gameStarted == true {
+                Button(action: {
+                    gameViewModel.newGame()
+                    navigationPath.append(.game)
+                }) {
+                    Text("Restart")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal, 40)
+                }
+            }
+            
 
             Button(action: {
                 navigationPath.append(.rules)

@@ -21,6 +21,14 @@ import SwiftUI
     func tapDeck() {
         self.gameState.tapDeck()
     }
+    
+    func newGame() {
+        self.gameState.newGame()
+    }
+    
+    func setGameToStarted() {
+        self.gameState.setGameToStarted()
+    }
 }
 
 
