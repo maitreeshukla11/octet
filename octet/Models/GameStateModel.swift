@@ -115,5 +115,6 @@ struct GameState {
         player1.flipAllCardsFaceUp()
         player2.flipAllCardsFaceUp()
         self.activePlayerId = nil
+        self.gameOver = true
     }
 }

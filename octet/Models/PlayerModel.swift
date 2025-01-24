@@ -29,7 +29,7 @@ struct Player {
     }
     
     mutating func replaceCard(cardToBePlaced: Card, column: Int, row: Int) -> Card {
-        var cardToBeReplaced = self.cards[column][row]
+        let cardToBeReplaced = self.cards[column][row]
         self.cards[column][row] = cardToBePlaced
         return cardToBeReplaced
     }
@@ -58,6 +58,71 @@ struct Player {
     }
     
     func computeScore() -> Int {
-        return 0
+        var score = 0
+        var frequencyOfPairs: [Int: Int] = [:]
+        var octopusPairs = 0
+        
+        for column in cards {
+            let firstCardInColumn = column[0]
+            let secondCardInColumn = column[1]
+            
+            if isOctopusPair(firstCardInColumn, secondCardInColumn) {
+                octopusPairs += 1
+            }
+            else if let pairValue = getPairValue(firstCardInColumn, secondCardInColumn) {
+                frequencyOfPairs[pairValue, default: 0] += 1
+            }
+            else {
+                score += firstCardInColumn.numericValue() + secondCardInColumn.numericValue()
+            }
+        }
+
+        if octopusPairs > 0 {
+            if frequencyOfPairs.isEmpty {
+                frequencyOfPairs[-1] = octopusPairs
+            } else {
+                var numericValueWithMostPairs: Int? = nil
+                var numberOfPairs = 0
+                
+                for (key, value) in frequencyOfPairs {
+                    if value > numberOfPairs {
+                        numberOfPairs = value
+                        numericValueWithMostPairs = key
+                    }
+                }
+                
+                frequencyOfPairs[numericValueWithMostPairs!] = numberOfPairs + octopusPairs
+            }
+        }
+
+        
+        for (_, count) in frequencyOfPairs {
+            switch count {
+            case 1:  score += 0
+            case 2:  score += -10
+            case 3:  score += -25
+            case 4:  score += -30
+            default:
+                score += 0
+            }
+        }
+        
+        return score
     }
+    
+    private func isOctopusPair(_ firstCardInColumn : Card, _ secondCardInColumn: Card) -> Bool {
+        return firstCardInColumn.isOctopus() && secondCardInColumn.isOctopus()
+    }
+
+    private func getPairValue(_ firstCardInColumn : Card, _ secondCardInColumn: Card) -> Int? {
+        if firstCardInColumn.isOctopus() && !secondCardInColumn.isOctopus() { return secondCardInColumn.numericValue() }
+        if secondCardInColumn.isOctopus() && !firstCardInColumn.isOctopus() { return firstCardInColumn.numericValue() }
+        
+        if firstCardInColumn.numericValue() == secondCardInColumn.numericValue() {
+            return firstCardInColumn.numericValue()
+        }
+    
+        return nil
+    }
+    
 }

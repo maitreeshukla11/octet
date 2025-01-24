@@ -88,8 +88,8 @@ struct RuleView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("**1. Pair**: Two matching cards in a column make the score of the column equal to 0.")
                     Text("**2. Quartet**: Four matching cards in 2 columns make the score of the 2 columns equal to -10.")
-                    Text("**3. Sextet**: Six matching cards in 3 columns make the score of the 3 columns equal to -15.")
-                    Text("**4. Octet**: Eight matching cards make the score equal to -20. This is the best possible score in the game!")
+                    Text("**3. Sextet**: Six matching cards in 3 columns make the score of the 3 columns equal to -25.")
+                    Text("**4. Octet**: Eight matching cards make the score equal to -30. This is the best possible score in the game!")
                     Text("**5. Unpaired Cards**: For any unpaired cards in a column, the score of the column is equal to the sum of the 2 cards.")
                     Text("**6. Final Score:** Each players's final score is summed up based on the scoring explained above. **The player with the lowest score wins!**")
                     
@@ -232,7 +232,7 @@ struct RuleView: View {
                         )
                         Spacer()
                     }
-                    Text("Score: -15 (for sextet of 7s including 🐙) + (1 + 2) = -12")
+                    Text("Score: -25 (for sextet of 7s including 🐙) + (1 + 2) = -22")
 
                     Text("Octet Example:").font(.headline)
                     HStack {
@@ -249,7 +249,7 @@ struct RuleView: View {
                         )
                         Spacer()
                     }
-                    Text("Score: -20 (for octet of 4s)")
+                    Text("Score: -30 (for octet of 4s)")
                 }
             }
             .padding()

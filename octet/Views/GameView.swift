@@ -16,14 +16,18 @@ struct GameView: View {
             ZStack {
                 VStack {
                     PlayerView(player: gameViewModel.gameState.player2, cardWidth: cardWidth, gameViewModel: $gameViewModel)
-                    CenterSetUpView(
-                        cardToBePlaced: gameViewModel.gameState.cardToBePlaced,
-                        deckHasCards: gameViewModel.gameState.deck.hasCards(),
-                        discard: gameViewModel.gameState.discardPileTopCard,
-                        activePlayer: gameViewModel.gameState.activePlayerId,
-                        cardWidth: cardWidth,
-                        gameViewModel: $gameViewModel
-                    )
+                    if gameViewModel.gameState.gameOver {
+                        ScoreView(player1Score: gameViewModel.gameState.player1.computeScore(), player2Score: gameViewModel.gameState.player2.computeScore())
+                    } else {
+                        CenterSetUpView(
+                            cardToBePlaced: gameViewModel.gameState.cardToBePlaced,
+                            deckHasCards: gameViewModel.gameState.deck.hasCards(),
+                            discard: gameViewModel.gameState.discardPileTopCard,
+                            activePlayer: gameViewModel.gameState.activePlayerId,
+                            cardWidth: cardWidth,
+                            gameViewModel: $gameViewModel
+                        )
+                    }
                     PlayerView(player: gameViewModel.gameState.player1, cardWidth: cardWidth, gameViewModel: $gameViewModel)
                 }
             }
