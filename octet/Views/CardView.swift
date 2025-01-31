@@ -19,6 +19,7 @@ struct CardView: View {
             
             if card.isFaceUp {
                 Text(card.cardValue)
+                    .foregroundColor(.black)
                     .font(.system(size: Constants.FontSize.largest))
                     .minimumScaleFactor(Constants.FontSize.scaleFactor)
                     .multilineTextAlignment(.center)
